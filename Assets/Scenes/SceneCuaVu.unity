@@ -653,7 +653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1192499752}
   - component: {fileID: 1192499753}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -914,7 +914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1715665130}
   - component: {fileID: 1715665133}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: tileset_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -977,7 +977,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 251843657, guid: e08e6a2f34edd4a7db4285eeddef84a8, type: 3}
+  m_Sprite: {fileID: -7775419718026629507, guid: e08e6a2f34edd4a7db4285eeddef84a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -985,7 +985,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 18}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1932727849
@@ -1123,6 +1123,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1153175025494359624, guid: 855dc2b14909e9d4b816caed6171369b, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 1194046089131670915, guid: 855dc2b14909e9d4b816caed6171369b, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1133,7 +1137,7 @@ PrefabInstance:
       objectReference: {fileID: 1198967136}
     - target: {fileID: 3189336398768081584, guid: 855dc2b14909e9d4b816caed6171369b, type: 3}
       propertyPath: ladderLayer.m_Bits
-      value: 0
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 5010201575318766021, guid: 855dc2b14909e9d4b816caed6171369b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1190,6 +1194,10 @@ PrefabInstance:
     - target: {fileID: 6115445056325868301, guid: 855dc2b14909e9d4b816caed6171369b, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 7785648211198771201, guid: 855dc2b14909e9d4b816caed6171369b, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
