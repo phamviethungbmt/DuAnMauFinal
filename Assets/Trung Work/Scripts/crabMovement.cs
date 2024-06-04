@@ -5,17 +5,19 @@ using UnityEngine;
 
 public class crabMovement : MonoBehaviour
 {
-    [SerializeField] private Transform player;
-    [SerializeField] private Transform limitLeft,limitRight;
+    private Transform player;
     [SerializeField] private float speed;
+    private float jump;
     private SpriteRenderer crabSprite;
     Animator animCrab;
     public GameObject explosionEffect;
     private Rigidbody2D rb;
     private float direction;
-    private float healthCrab = 100;
+    private float healthCrab = 4;
+    //Khai báo Camera
     private Renderer renderer;
     private bool isVisible;
+    GameObject playerMain; //Tham chiếu đến đối tượng Player
     private void Start()
     {
         crabSprite = GetComponent<SpriteRenderer>();
@@ -23,32 +25,35 @@ public class crabMovement : MonoBehaviour
         rb= GetComponent<Rigidbody2D>();
         renderer = GetComponent<Renderer>();
         direction = 0;
+        playerMain = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
     void Update()
     {
         // AI di chuyển theo Player
-        if (transform.position.x < player.position.x || transform.position.x < limitLeft.position.x)
+        if (transform.position.x < player.position.x)
         {
             crabSprite.flipX = true;
             direction = 1;
+            jump = 0;
         }
-        if (transform.position.x > player.position.x || transform.position.x > limitRight.position.x)
+        if (transform.position.x > player.position.x)
         {
             crabSprite.flipX = false;
             direction = -1;
+            jump = 0;
         }
-        rb.velocity = new Vector2(direction * speed, 0);
+        rb.velocity = new Vector2(direction * speed, jump);
         //Nếu người chơi di chuyển mà AI nằm ngoài tầm nhìn Camera thì sẽ tự động biến mất
-        if (!renderer.isVisible && isVisible )
-        {
-            Destroy(gameObject);
-        }
-        isVisible=renderer.isVisible;
-
+        //if (!renderer.isVisible && isVisible)
+        //{
+        //    Destroy(gameObject);
+        //}
+        //isVisible=renderer.isVisible;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Nếu nó va chạm với Player thì sẽ tự động dừng lại, sau đó sẽ phát nổ
+        // Nếu nó va chạm với Player thì sẽ tự động phát nổ
         if (collision.gameObject.tag == "Player")
         {
             StartCoroutine(Explosion());
@@ -59,17 +64,22 @@ public class crabMovement : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             // Nếu con cua va chạm với đạn của nhân vật thì sẽ bị trừ máu, hết máu thì chết, xóa đạn
-            healthCrab -= 30;
-            if (healthCrab <= 0)
+            healthCrab -= 1;
+            if (healthCrab == 1)
             {
-                animCrab.SetTrigger("Death2");
-                Destroy(gameObject, 0.6f);
-                Destroy(collision.gameObject, 0.6f);
+                animCrab.SetTrigger("AlmostDead");
+                Destroy(collision.gameObject);
             }
             else
             {
                 animCrab.SetTrigger("Hurt");
-                Destroy(collision.gameObject, 0.6f);
+                Destroy(collision.gameObject);
+            }
+            if (healthCrab <= 0)
+            {
+                animCrab.SetTrigger("Death2");
+                Destroy(gameObject, 0.4f);
+                Destroy(collision.gameObject);
             }
         }
     }
@@ -79,6 +89,11 @@ public class crabMovement : MonoBehaviour
         yield return null;
         Destroy(gameObject);
         GameObject a=Instantiate(explosionEffect,transform.position,Quaternion.identity);
+        //Thêm lực đẩy cho viên đạn để khiến Player bị nhảy lên một đoạn
+        Rigidbody2D rbBullet= playerMain.GetComponent<Rigidbody2D>();
+        Vector2 directionExplosion = new Vector2(0, 7);
+        rbBullet.AddForce(directionExplosion, ForceMode2D.Impulse);
+        //Xóa vụ nổ
         Destroy(a,0.9f);
     }
 }

@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float speedDrone;
     private SpriteRenderer spriteDrone;
     private Animator animDrone;
-    [SerializeField] private Transform posPlayer;
+    private Transform posPlayer;
     float speedDroneShoot;
     [SerializeField] private GameObject bulletDrone;
     [SerializeField] private Transform bulletDronePoint;
@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour
         spriteDrone = GetComponent<SpriteRenderer>();
         rb=GetComponent<Rigidbody2D>();
         coll= GetComponent<Collider2D>();
+        posPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
     void Update()
     {
@@ -63,7 +64,7 @@ public class EnemyController : MonoBehaviour
     void Shoot()
     {
         speedDroneShoot+=Time.deltaTime;
-        if (speedDroneShoot >= 2)
+        if (speedDroneShoot > 1)
         {
             GameObject t=Instantiate(bulletDrone, bulletDronePoint.position, Quaternion.identity);
             if (spriteDrone.flipX==false)
@@ -85,9 +86,11 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             rb.bodyType = RigidbodyType2D.Static;
+            Collider2D col=gameObject.GetComponent<Collider2D>();
+            col.enabled = false;
             animDrone.SetTrigger("Death");
             soundDeath.Play();
-            coll.isTrigger = true;
+            speedDroneShoot = 0;
             Destroy(collision.gameObject);
             Destroy(gameObject, 0.6f);
         }
