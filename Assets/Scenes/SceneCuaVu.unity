@@ -1131,6 +1131,10 @@ PrefabInstance:
       propertyPath: myAnimator
       value: 
       objectReference: {fileID: 1198967136}
+    - target: {fileID: 3189336398768081584, guid: 855dc2b14909e9d4b816caed6171369b, type: 3}
+      propertyPath: ladderLayer.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5010201575318766021, guid: 855dc2b14909e9d4b816caed6171369b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.39
