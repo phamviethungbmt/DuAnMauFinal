@@ -7,15 +7,19 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirection))]
 public class Controller : MonoBehaviour
 {
-    //Weapon weapon;
+   
     [SerializeField] private float walkSpeed = 0;
+   [SerializeField] private float climbSpeed = 0;
     [SerializeField] private float runSpeed = 0;
     [SerializeField] private float airWalkSpeed = 0;
     [SerializeField] private float jumpImpulse = 0;
+  //  [SerializeField] private float distanceRaycast;
+  //  [SerializeField] LayerMask whatIsLadder;
 
     TouchingDirection touchingDirection;
 
     Vector2 moveInput;
+   
     private float currentMoveSpeed
     {
         get
@@ -98,15 +102,22 @@ public class Controller : MonoBehaviour
     public bool CanMove { get { return myAnimator.GetBool(AnimationString.canMove); } }
     public bool IsAlive { get { return myAnimator.GetBool(AnimationString.isAlive); } }
 
+ 
+
     Rigidbody2D rb;
     Animator myAnimator;
+
+    // climb
+    [SerializeField] private LadderHandlers playerladder;
+    [SerializeField] private LayerMaskCircle objectLadderLayerTop;
+    [SerializeField] private LayerMaskCircle objectladderLayerBottom;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         touchingDirection = GetComponent<TouchingDirection>();
-      //  weapon=GetComponent<Weapon>();
+      
     }
     void Start()
     {
@@ -116,25 +127,31 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        objectLadderLayerTop.HandleCollider2D();
+        objectladderLayerBottom.HandleCollider2D();
     }
     private void FixedUpdate()
     {
+
+
+
+       
+
         rb.velocity = new Vector2(moveInput.x * currentMoveSpeed, rb.velocity.y);
         myAnimator.SetFloat(AnimationString.yVelocity, rb.velocity.y);
 
         if (IsMoving)
         {
-
-
             // rb.MovePosition(rb.position + ((new Vector2(moveInput.x * currentMoveSpeed * Time.fixedDeltaTime, rb.velocity.y))));
-
         }
+        playerladder.onClimb(objectLadderLayerTop.IsCollider2D(),objectladderLayerBottom.IsCollider2D(),moveInput.y,moveInput.x,climbSpeed);
+        
 
     }
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+
         if (IsAlive)
         {
             IsMoving = moveInput != Vector2.zero;
@@ -188,4 +205,8 @@ public class Controller : MonoBehaviour
             myAnimator.SetTrigger(AnimationString.attackTrigger);
         }
     }
+    //public Vector2 GetInput()
+    //{
+    //    return moveInput;
+    //}
 }

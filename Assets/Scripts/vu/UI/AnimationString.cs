@@ -14,4 +14,6 @@ internal class AnimationString
     internal static string attackTrigger = "Attack";
     internal static string canMove = "canMove";
     internal static string isAlive = "IsAlive";
+    internal static string IsClimbing = "IsClimbing";
+
 }
