@@ -20,6 +20,7 @@ public class Weapon : MonoBehaviour
     public void Fire()
     {
         GameObject bulletPrf = Instantiate(bulletPrefab, bulletPos.position,transform.rotation);
+        Destroy(bulletPrf,5);
         //Debug.Log(controller.IsFacingRight);
        
     }
