@@ -53,6 +53,9 @@ public class crabMovement : MonoBehaviour
         {
             StartCoroutine(Explosion());
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision.gameObject.tag == "Bullet")
         {
             // Nếu con cua va chạm với đạn của nhân vật thì sẽ bị trừ máu, hết máu thì chết, xóa đạn

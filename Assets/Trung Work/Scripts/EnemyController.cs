@@ -79,7 +79,7 @@ public class EnemyController : MonoBehaviour
         }
     }
     //Xử lí va chạm với đạn
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         //Nếu Tàu va chạm với đạn của Player thì phát nổ
         if (collision.gameObject.CompareTag("Bullet"))
