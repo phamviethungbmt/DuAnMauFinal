@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class traprangcua : MonoBehaviour
 {
-    float speed = 5f;
+    public float speed = 5f;
     public float speeddc = 5f;
     public Transform diema;
     public Transform diemb;
     private Vector3 diemmuctieu;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,7 @@ public class traprangcua : MonoBehaviour
             {
                 diemmuctieu = diema.position;
             }
-        }
+        }      
     }
     private void FixedUpdate()
     {

@@ -454,9 +454,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff00f33d4dc44141840498ea6417f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
   speeddc: 5
   diema: {fileID: 690385160}
   diemb: {fileID: 1595936871}
+  a1: 50
+  a2: 4
 --- !u!212 &604802951
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -518,7 +521,7 @@ Transform:
   m_GameObject: {fileID: 604802949}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -8.72, y: -1.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -712,7 +715,7 @@ Transform:
   m_GameObject: {fileID: 1112887256}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.69, y: 3.4172, z: 10}
+  m_LocalPosition: {x: 5.56, y: -2.23, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
