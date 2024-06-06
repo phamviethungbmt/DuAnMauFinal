@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour
 {
     public GameObject panel;
     public Slider volumeSilder;
+    private bool isPause = false;
     void Start()
     {
         if (volumeSilder != null)
@@ -29,6 +30,19 @@ public class Menu : MonoBehaviour
             else
             {
                 panel.SetActive(false);
+            }
+        }
+
+
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            if (!panel.activeSelf)
+            {
+                Pause();
+            }
+            else
+            {
+                ResumeGame();
             }
         }
     }
@@ -61,6 +75,21 @@ public class Menu : MonoBehaviour
     public void ChangeVolume(float volume)
     {
         AudioListener.volume = volume;
+    }
+
+    public void Pause()
+    {
+        if (!isPause)
+        {
+            Time.timeScale = 0f;
+            isPause = true;
+        }
+    }
+
+    void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        isPause = false;
     }
     public void Exit()
     {
