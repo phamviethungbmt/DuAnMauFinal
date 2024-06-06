@@ -57,6 +57,15 @@ public class crabMovement : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             StartCoroutine(Explosion());
+            //Thêm lực đẩy cho viên đạn để khiến Player bị nhảy lên một đoạn
+            Rigidbody2D rbBullet = playerMain.GetComponent<Rigidbody2D>();
+            Vector2 directionExplosion = new Vector2(0, 7);
+            rbBullet.AddForce(directionExplosion, ForceMode2D.Impulse);
+        }
+        //Nếu quái chạm với tường thì sẽ tự động phát nổ
+        if (collision.gameObject.tag == "DeathZone")
+        {
+            StartCoroutine(Explosion());
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -89,10 +98,6 @@ public class crabMovement : MonoBehaviour
         yield return null;
         Destroy(gameObject);
         GameObject a=Instantiate(explosionEffect,transform.position,Quaternion.identity);
-        //Thêm lực đẩy cho viên đạn để khiến Player bị nhảy lên một đoạn
-        Rigidbody2D rbBullet= playerMain.GetComponent<Rigidbody2D>();
-        Vector2 directionExplosion = new Vector2(0, 7);
-        rbBullet.AddForce(directionExplosion, ForceMode2D.Impulse);
         //Xóa vụ nổ
         Destroy(a,0.9f);
     }
