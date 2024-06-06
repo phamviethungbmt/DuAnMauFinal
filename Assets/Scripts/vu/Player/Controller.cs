@@ -13,6 +13,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private float runSpeed = 0;
     [SerializeField] private float airWalkSpeed = 0;
     [SerializeField] private float jumpImpulse = 0;
+    [SerializeField] private int damage = 0;
   //  [SerializeField] private float distanceRaycast;
   //  [SerializeField] LayerMask whatIsLadder;
 
@@ -111,6 +112,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private LadderHandlers playerladder;
     [SerializeField] private LayerMaskCircle objectLadderLayerTop;
     [SerializeField] private LayerMaskCircle objectladderLayerBottom;
+    PlayerHealth playerHealth;
 
     private void Awake()
     {
@@ -121,6 +123,7 @@ public class Controller : MonoBehaviour
     }
     void Start()
     {
+        playerHealth = GetComponent<PlayerHealth>();
 
     }
 
@@ -131,12 +134,7 @@ public class Controller : MonoBehaviour
         objectladderLayerBottom.HandleCollider2D();
     }
     private void FixedUpdate()
-    {
-
-
-
-       
-
+    { 
         rb.velocity = new Vector2(moveInput.x * currentMoveSpeed, rb.velocity.y);
         myAnimator.SetFloat(AnimationString.yVelocity, rb.velocity.y);
 
@@ -204,6 +202,15 @@ public class Controller : MonoBehaviour
         {
             myAnimator.SetTrigger(AnimationString.attackTrigger);
         }
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Enemy enemies=other.gameObject.GetComponent<Enemy>();
+
+        if(enemies)
+        {
+            playerHealth.TakeDamage(damage);
+        }    
     }
     //public Vector2 GetInput()
     //{
