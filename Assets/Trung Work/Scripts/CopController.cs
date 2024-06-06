@@ -12,7 +12,7 @@ public class CopController : MonoBehaviour
     public GameObject eyeRay;
     float direction = 0;
     public float distance;
-    public Transform playerPos;
+    private Transform playerPos;
     private Animator anim;
     public GameObject bulletCop;
     public Transform posBullet,posBullet1,posBullet2;
@@ -24,6 +24,7 @@ public class CopController : MonoBehaviour
         posTarget=posLeft.position;
         spriteCop=GetComponent<SpriteRenderer>();
         anim=GetComponent<Animator>();
+        playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().transform;
     }
     void Update()
     {
