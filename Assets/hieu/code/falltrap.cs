@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class falltrap : MonoBehaviour
 {
+    public GameObject Object;
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,20 @@ public class falltrap : MonoBehaviour
         if (collision.gameObject.tag=="Player")
         {
             rb.isKinematic = false;
+            StartCoroutine(cd());
         }
+    }
+    IEnumerator cd()
+    {
+        float tg = 10f;
+        while(tg>0)
+        {
+            Object.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
+            Object.SetActive(false);
+            yield return new WaitForSeconds(0.2f);
+            tg--;
+        }
+        Destroy(this.gameObject);
     }
 }
