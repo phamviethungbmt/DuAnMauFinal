@@ -6,7 +6,8 @@ using UnityEngine;
 public class CopController : MonoBehaviour
 {
     public Transform posLeft, posRight;
-    public float speed;
+    [SerializeField] private float moveSpeedCop;
+    private float speed;
     Vector2 posTarget;
     private SpriteRenderer spriteCop;
     public GameObject eyeRay;
@@ -21,7 +22,8 @@ public class CopController : MonoBehaviour
     public AudioSource audioShootCop;
     void Start()
     {
-        posTarget=posLeft.position;
+        speed = moveSpeedCop;
+        posTarget =posLeft.position;
         spriteCop=GetComponent<SpriteRenderer>();
         anim=GetComponent<Animator>();
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().transform;
@@ -83,8 +85,16 @@ public class CopController : MonoBehaviour
         else
         {
             anim.SetBool("OnIdle", false);
-            speed = 3;
+            speed = moveSpeedCop;
             anim.speed=1;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
         }
     }
     void StartShoot()
