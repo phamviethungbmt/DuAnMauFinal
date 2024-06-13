@@ -33,15 +33,19 @@ public class CopController : MonoBehaviour
     }
     void Update()
     {
-        if (Vector2.Distance(transform.position,posLeft.position) < .1f)
+        if (!foundPlayer)
         {
-            posTarget=posRight.position;
-            spriteCop.flipX= true;
-        }
-        if (Vector2.Distance(transform.position, posRight.position) < .1f)
-        {
-            posTarget = posLeft.position;
-            spriteCop.flipX = false;
+            if (Vector2.Distance(transform.position, posLeft.position) < .1f)
+            {
+                posTarget = posRight.position;
+                spriteCop.flipX = true;
+            }
+            if (Vector2.Distance(transform.position, posRight.position) < .1f)
+            {
+                posTarget = posLeft.position;
+                spriteCop.flipX = false;
+            }
+            transform.position = Vector2.MoveTowards(transform.position, posTarget, speed * Time.deltaTime);
         }
         if (spriteCop.flipX)
         {
@@ -51,7 +55,6 @@ public class CopController : MonoBehaviour
         {
             direction = 1;
         }
-        transform.position=Vector2.MoveTowards(transform.position, posTarget, speed*Time.deltaTime);
         if (foundPlayer && Vector2.Distance(playerPos.transform.position,transform.position) < 30)
         {
             //Nếu quái ở bên phải người chơi
