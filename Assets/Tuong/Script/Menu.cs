@@ -48,12 +48,13 @@ public class Menu : MonoBehaviour
     }
     public void Game()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(1);
     }
 
     public void Replay()
     {
-        SceneManager.LoadScene("Game");
+        Scene currenScence = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currenScence.name);
     }
 
     public void Setting()
@@ -93,11 +94,11 @@ public class Menu : MonoBehaviour
     }
     public void Exit()
     {
-#if UNITY_EDITOR
+
         UnityEditor.EditorApplication.isPlaying = false;
-#else
-    Application.Quit();
-#endif
+
+        //Application.Quit(); khi build game
+
     }
 
 }

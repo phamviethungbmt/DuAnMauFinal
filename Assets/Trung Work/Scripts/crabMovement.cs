@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class crabMovement : MonoBehaviour
 {
-    private Transform player;
+    private  Transform player;
     [SerializeField] private float speed;
     private float jump;
     private SpriteRenderer crabSprite;
