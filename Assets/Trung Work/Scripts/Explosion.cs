@@ -16,7 +16,7 @@ public class Explosion : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Rigidbody2D rbEplosion = playerMain.GetComponent<Rigidbody2D>();
-            Vector2 directionExplosion = new Vector2(0, 5);
+            Vector2 directionExplosion = new Vector2(0, 3);
             rbEplosion.AddForce(directionExplosion, ForceMode2D.Impulse);
         }
     }

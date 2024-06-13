@@ -18,8 +18,15 @@ public class crabMovement : MonoBehaviour
     private Renderer renderer;
     private bool isVisible;
     GameObject playerMain; //Tham chiếu đến đối tượng Player
+    [SerializeField] private Transform posLeft,posRight,limitCanSeeLeft,limitCanSeeRight;
+    private Vector2 posCrabTarget;
+    private Transform limitCanSee;
+    private bool crabSawYou;
+    [SerializeField] private GameObject ExplosionWhenCrabIsDefeated;
     private void Start()
     {
+        limitCanSee = null;
+        crabSawYou = false;
         crabSprite = GetComponent<SpriteRenderer>();
         animCrab = GetComponent<Animator>();
         rb= GetComponent<Rigidbody2D>();
@@ -27,29 +34,71 @@ public class crabMovement : MonoBehaviour
         direction = 0;
         playerMain = GameObject.FindGameObjectWithTag("Player");
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        posCrabTarget=posLeft.position;
     }
     void Update()
     {
-        // AI di chuyển theo Player
-        if (transform.position.x < player.position.x)
+        if (!crabSawYou)
         {
-            crabSprite.flipX = true;
-            direction = 1;
-            jump = 0;
+            if (Vector2.Distance(transform.position, posLeft.position) < .1f)
+            {
+                crabSprite.flipX = true;
+                posCrabTarget = posRight.position;
+            }
+            if (Vector2.Distance(transform.position, posRight.position) < .1f)
+            {
+                crabSprite.flipX = false;
+                posCrabTarget = posLeft.position;
+            }
+            transform.position = Vector2.MoveTowards(transform.position, posCrabTarget, speed * Time.deltaTime);
         }
-        if (transform.position.x > player.position.x)
+        else
         {
-            crabSprite.flipX = false;
-            direction = -1;
-            jump = 0;
+            // AI di chuyển theo Player
+            if (transform.position.x < player.position.x)
+            {
+                crabSprite.flipX = true;
+                direction = 1;
+                jump = 0;
+            }
+            if (transform.position.x > player.position.x)
+            {
+                crabSprite.flipX = false;
+                direction = -1;
+                jump = 0;
+            }
+            transform.position=Vector2.MoveTowards(transform.position,new Vector2(player.position.x,0), speed * Time.deltaTime);
         }
-        rb.velocity = new Vector2(direction * speed, jump);
         //Nếu người chơi di chuyển mà AI nằm ngoài tầm nhìn Camera thì sẽ tự động biến mất
         //if (!renderer.isVisible && isVisible)
         //{
         //    Destroy(gameObject);
         //}
         //isVisible=renderer.isVisible;
+    }
+    private void FixedUpdate()
+    {
+        if (crabSprite.flipX)
+        {
+            limitCanSee = limitCanSeeRight;
+        }
+        else
+        {
+            limitCanSee = limitCanSeeLeft;
+        }
+        RaycastHit2D hit=Physics2D.Raycast(transform.position,limitCanSee.position - transform.position);
+        if (hit.collider != null)
+        {
+            if (hit.transform.name == "Player")
+            {
+                Debug.DrawRay(transform.position, limitCanSee.position - transform.position, Color.green);
+                crabSawYou = true;
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, limitCanSee.position - transform.position, Color.red);
+            }
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -86,8 +135,9 @@ public class crabMovement : MonoBehaviour
             }
             if (healthCrab <= 0)
             {
-                animCrab.SetTrigger("Death2");
-                Destroy(gameObject, 0.4f);
+                GameObject explosion = Instantiate(ExplosionWhenCrabIsDefeated, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+                Destroy(explosion, 0.6f);
                 Destroy(collision.gameObject);
             }
         }

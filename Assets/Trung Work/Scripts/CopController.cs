@@ -17,14 +17,17 @@ public class CopController : MonoBehaviour
     public GameObject bulletCop;
     public Transform posBullet,posBullet1,posBullet2;
     public float speedBulletAngle;
-    float time=3;
+    float time;
     public AudioSource audioShootCop;
     float shootRate=5f;
     [SerializeField] private bool foundPlayer = false;
     [SerializeField] private GameObject EnemyIsDestroyedExplosion;
+    [SerializeField] private Transform limitPointEnemySeeLeft,limitPointEnemySeeRight;
+    private Transform limitPointEnemySee=null;
+    GameObject t, t1, t2;
     void Start()
     {
-        time = 0;
+        time = 1;
         speed = moveSpeedCop;
         posTarget =posLeft.position;
         spriteCop=GetComponent<SpriteRenderer>();
@@ -55,7 +58,7 @@ public class CopController : MonoBehaviour
         {
             direction = 1;
         }
-        if (foundPlayer && Vector2.Distance(playerPos.transform.position,transform.position) < 30)
+        if (foundPlayer)
         {
             //Nếu quái ở bên phải người chơi
             if (transform.position.x > playerPos.transform.position.x)
@@ -97,19 +100,27 @@ public class CopController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        RaycastHit2D ray = Physics2D.Raycast(transform.position, playerPos.transform.position-transform.position);
+        if (spriteCop.flipX)
+        {
+            limitPointEnemySee = limitPointEnemySeeRight;
+        }
+        else
+        {
+            limitPointEnemySee = limitPointEnemySeeLeft;
+        }
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, limitPointEnemySee.position - transform.position);
         if (ray.collider != null)
         {
             //Quét được gameObject có tên là Player thì sẽ tấn công người chơi
             if (ray.transform.name == "Player")
             {
                 foundPlayer = true;
-                Debug.DrawRay(transform.position, playerPos.transform.position - transform.position, Color.green);
+                Debug.DrawRay(transform.position, limitPointEnemySee.position - transform.position, Color.green);
             }
             else
             {
                 foundPlayer = false;
-                Debug.DrawRay(transform.position, playerPos.transform.position - transform.position, Color.red);
+                Debug.DrawRay(transform.position, limitPointEnemySee.position - transform.position, Color.red);
             }
         }    
     }
@@ -119,25 +130,27 @@ public class CopController : MonoBehaviour
         {
             GameObject enemyExplosion=Instantiate(EnemyIsDestroyedExplosion,transform.position,Quaternion.identity);
             Destroy(gameObject);
+            Destroy(t);
+            Destroy(t1);
+            Destroy(t2);
             Destroy(collision.gameObject);
-            Destroy(enemyExplosion, 0.6f);
+            Destroy(enemyExplosion, 0.65f);
         }
     }
     void StartShoot()
     {
-        time += Time.deltaTime;
-        if (time > 2)
+        if (time > 1)
         {
-            GameObject t = Instantiate(bulletCop, posBullet.position, Quaternion.identity);
+            t = Instantiate(bulletCop, posBullet.position, Quaternion.identity);
             Rigidbody2D r = t.GetComponent<Rigidbody2D>();
             r.velocity = posBullet.right*speedBulletAngle * direction;
             Destroy(t, 5f);
-            GameObject t1 = Instantiate(bulletCop, posBullet1.position, posBullet1.rotation);
+            t1 = Instantiate(bulletCop, posBullet1.position, posBullet1.rotation);
             Rigidbody2D r1 = t1.GetComponent<Rigidbody2D>();
             //Vector2 directionBullet1 = new Vector2(1,1).normalized;
             r1.velocity = posBullet1.right * speedBulletAngle * direction;
             Destroy(t1, 5f);
-            GameObject t2 = Instantiate(bulletCop, posBullet2.position, posBullet2.rotation);
+            t2 = Instantiate(bulletCop, posBullet2.position, posBullet2.rotation);
             Rigidbody2D r2 = t2.GetComponent<Rigidbody2D>();
             //Vector2 directionBullet2 = new Vector2(1,1).normalized;
             r2.velocity = posBullet2.right * speedBulletAngle * direction;
@@ -145,5 +158,6 @@ public class CopController : MonoBehaviour
             time = 0;
             audioShootCop.Play();
         }
+        time += Time.deltaTime;
     }
 }

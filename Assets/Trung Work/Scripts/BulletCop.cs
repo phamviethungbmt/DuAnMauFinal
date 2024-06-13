@@ -24,6 +24,5 @@ public class BulletCop : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        Destroy(gameObject,5);
     }
 }
