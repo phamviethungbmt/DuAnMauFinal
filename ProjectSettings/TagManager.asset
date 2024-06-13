@@ -10,6 +10,8 @@ TagManager:
   - Explosion
   - Bullet
   - DeathZone
+  - Head
+  - Body
   layers:
   - Default
   - TransparentFX

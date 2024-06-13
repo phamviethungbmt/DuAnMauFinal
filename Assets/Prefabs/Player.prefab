@@ -224,6 +224,7 @@ MonoBehaviour:
   runSpeed: 10
   airWalkSpeed: 5
   jumpImpulse: 12
+  damage: 0
   _isMoving: 0
   _isRunning: 0
   _isFacingRight: 1
@@ -465,10 +466,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ladderLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   playerCollider: {fileID: 3772181166581333922}
   rb: {fileID: 257881736936924108}
   canClimbing: 0
+  myAnimator: {fileID: 0}
 --- !u!1 &5684230473249537634
 GameObject:
   m_ObjectHideFlags: 0

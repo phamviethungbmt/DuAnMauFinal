@@ -4,29 +4,26 @@ using UnityEngine;
 
 public class BulletCop : MonoBehaviour
 {
-    [SerializeField] private float speedBulletEnemy;
-    Rigidbody2D rb;
-    private SpriteRenderer sprite1;
-    float dirBullet;
+    //[SerializeField] private float speedBulletEnemy;
+    //Rigidbody2D rb;
+    //private SpriteRenderer sprite1;
+    //float dirBullet=0;
     void Start()
     {
-        sprite1 = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
+        //sprite1 = GameObject.FindAnyObjectByType<CopController>().GetComponent<SpriteRenderer>();
+        //rb = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
-        if (sprite1.flipX)
-        {
-            dirBullet = 1;
-        }
-        else
-        {
-            dirBullet = -1;
-        }
-        rb.velocity = dirBullet * transform.right * speedBulletEnemy;
+        //rb.velocity = dirBullet*transform.right * speedBulletEnemy;
+        Destroy(gameObject, 5);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject,3);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
+        Destroy(gameObject,5);
     }
 }
