@@ -12,6 +12,7 @@ public class Menu : MonoBehaviour
     private bool isPause = false;
     void Start()
     {
+        panel.SetActive(false);
         if (volumeSilder != null)
         {
             volumeSilder.value = AudioListener.volume;

@@ -26,6 +26,10 @@ public class LadderHandlers : MonoBehaviour
             rb.gravityScale = 0;
             
         }
+        if (!IsLadder())
+        {
+            DisableClimb();
+        }
         if(canClimbing)
         {
             if((!isColliderTop&&inputY>=0)||(!isColliderBottom&&inputY>=0))

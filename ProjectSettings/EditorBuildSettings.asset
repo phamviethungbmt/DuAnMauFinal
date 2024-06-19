@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Hung/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
     path: Assets/Tuong/Scene/Game.unity
@@ -14,10 +14,22 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Tuong/Scene/Menu.unity
     guid: 99b891ccc9e8d884d8bab4fea95b0589
-  - enabled: 1
+  - enabled: 0
     path: Assets/vu/Scene/SceneCuaVu.unity
     guid: 43018998cfbe5034dad5f9183cd9167d
-  - enabled: 1
+  - enabled: 0
     path: Assets/vu/Scene/SceneCuaVu2.unity
     guid: a65195c2ec4fc454b9092fa0f48fc646
+  - enabled: 1
+    path: Assets/final/scene Final/Menu.unity
+    guid: 0ec6874fb1f8c2b44a421b90ebc3b09c
+  - enabled: 1
+    path: Assets/final/scene Final/hieu1 1fix.unity
+    guid: d5b5bd96be6d33c45b686aebd5bdade9
+  - enabled: 1
+    path: Assets/final/scene Final/Hieu2 1fix.unity
+    guid: 18e44ecdbbc16b447990ad32dce96210
+  - enabled: 1
+    path: Assets/final/scene Final/hieu3 1fix.unity
+    guid: 130c112e69452834aa15e7b3c0225db7
   m_configObjects: {}

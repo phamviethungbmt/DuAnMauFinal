@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerHealth : MonoBehaviour,TakeDamage
 {
@@ -13,6 +14,12 @@ public class PlayerHealth : MonoBehaviour,TakeDamage
     private Slider healthSlider;
     Animator myAnimator;
     const string HEALTH_SLIDER_TEXT = ("Health Slider");
+
+    public int score;
+    public TextMeshProUGUI scoreText;
+
+
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -24,6 +31,21 @@ public class PlayerHealth : MonoBehaviour,TakeDamage
     {
         
     }
+    public void GetHeal(int addheal)
+    {
+        if(currentHealth < maxHealth)
+        {
+            currentHealth += addheal;
+            UpdateSliderHealth();
+        }
+    }
+
+    public void TakeScore(int addscore)
+    {
+        score += addscore;
+        scoreText.text = "SCORE " + score;
+    }
+
     public void TakeDamage(int damage)
     {
          currentHealth-=damage;

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4146577535561242952}
   - component: {fileID: 1709729080454570782}
   - component: {fileID: 3882015442209834810}
+  - component: {fileID: 7918884858868728230}
   m_Layer: 0
   m_Name: ShootDrone
   m_TagString: BulletEnemy
@@ -172,3 +173,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.625, y: 0.15801287}
   m_EdgeRadius: 0
+--- !u!114 &7918884858868728230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4247840383563789730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd5ea526fbacb534b9a94ae614657ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageEnemy: 1
