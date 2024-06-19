@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5988225978926613648}
   - component: {fileID: 8700929366459799301}
   - component: {fileID: 5124340052573062935}
+  - component: {fileID: 880919650116065561}
   m_Layer: 0
   m_Name: J_Ur_u (1)
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 48.1277, y: 5.7415, z: 0}
-  m_LocalScale: {x: 0.5654156, y: 0.65434283, z: 1}
+  m_LocalScale: {x: 0.44910964, y: 0.48526064, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -130,3 +131,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.15, y: 2.5}
   m_EdgeRadius: 0
+--- !u!114 &880919650116065561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7053659480509720578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e59acaffabe230489d16df803b5db09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  addHeal: 1

@@ -205,6 +205,10 @@ public class Controller : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.CompareTag("ground"))
+        {
+            transform.parent = other.transform;
+        }
         Enemy enemies=other.gameObject.GetComponent<Enemy>();
 
         if(enemies)

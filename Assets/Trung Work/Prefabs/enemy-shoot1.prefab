@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6576260211216572895}
   - component: {fileID: 8218023817679715511}
   - component: {fileID: 4635708514446620362}
+  - component: {fileID: 2763471340624467409}
   m_Layer: 0
   m_Name: enemy-shoot1
   m_TagString: BulletEnemy
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 7b77e3c9621024d4dbb617688b084886, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -161,3 +162,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa093e1ee97d81459a58c39370a72c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2763471340624467409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715226833320717840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd5ea526fbacb534b9a94ae614657ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageEnemy: 1
