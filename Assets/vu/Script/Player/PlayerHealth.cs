@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class PlayerHealth : MonoBehaviour,TakeDamage
 {
     [SerializeField] private int maxHealth;
@@ -19,13 +20,20 @@ public class PlayerHealth : MonoBehaviour,TakeDamage
     public static int scoreTemp = 0;
     public TextMeshProUGUI scoreText;
 
-
+    public bool hadKey = false;
 
     void Start()
     {
-        scoreText.text = score.ToString();
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            hadKey = true;
+        }
+        else hadKey = false;
+        
+        Time.timeScale = 1f;
+        scoreText.text = "SCORE" + score.ToString();
         currentHealth = maxHealth;
-      myAnimator=GetComponent<Animator>();  
+        myAnimator=GetComponent<Animator>();  
     }
 
     // Update is called once per frame
@@ -80,5 +88,14 @@ public class PlayerHealth : MonoBehaviour,TakeDamage
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Key"))
+        {
+            hadKey = true;
+            Destroy(collision.gameObject);
+        }
     }
 }

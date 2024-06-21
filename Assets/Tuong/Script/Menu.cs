@@ -61,6 +61,7 @@ public class Menu : MonoBehaviour
 
     public void Replay()
     {
+        
         PlayerHealth.score = PlayerHealth.scoreTemp;
         Time.timeScale = 1f;
         Scene currenScence = SceneManager.GetActiveScene();

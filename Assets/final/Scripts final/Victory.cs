@@ -47,6 +47,7 @@ public class Victory : MonoBehaviour
 
         audioSource.PlayOneShot(victoryClip);
 
+        Time.timeScale = 0f;
         panelVictory.SetActive(true);
         PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
         if (playerHealth != null)

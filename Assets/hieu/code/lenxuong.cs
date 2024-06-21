@@ -29,4 +29,19 @@ public class lenxuong : MonoBehaviour
             transform.Translate(0, speed * Time.deltaTime, 0);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            collision.transform.SetParent(transform);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            collision.transform.SetParent(null);
+        }
+    }
 }

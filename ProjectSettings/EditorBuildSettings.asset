@@ -21,15 +21,15 @@ EditorBuildSettings:
     path: Assets/vu/Scene/SceneCuaVu2.unity
     guid: a65195c2ec4fc454b9092fa0f48fc646
   - enabled: 1
-    path: Assets/final/scene Final/Menu.unity
+    path: Assets/Final/scene Final/Menu.unity
     guid: 0ec6874fb1f8c2b44a421b90ebc3b09c
   - enabled: 1
-    path: Assets/final/scene Final/hieu1 1fix.unity
+    path: Assets/Final/scene Final/hieu1 1fix.unity
     guid: d5b5bd96be6d33c45b686aebd5bdade9
   - enabled: 1
-    path: Assets/final/scene Final/Hieu2 1fix.unity
+    path: Assets/Final/scene Final/Hieu2 1fix.unity
     guid: 18e44ecdbbc16b447990ad32dce96210
   - enabled: 1
-    path: Assets/final/scene Final/hieu3 1fix.unity
+    path: Assets/Final/scene Final/hieu3 1fix.unity
     guid: 130c112e69452834aa15e7b3c0225db7
   m_configObjects: {}

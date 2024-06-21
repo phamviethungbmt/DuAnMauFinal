@@ -18,6 +18,7 @@ public class EnemyDamage : MonoBehaviour
             Destroy(gameObject);
         }
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+
         if (playerHealth != null)
         {
             playerHealth.TakeDamage(damageEnemy);
@@ -27,12 +28,16 @@ public class EnemyDamage : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("vacham voi player");
-        PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
-        if (playerHealth != null)
+        if (collision.CompareTag("Player"))
         {
-            playerHealth.TakeDamage(damageEnemy);
-            Destroy(gameObject);
+            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damageEnemy);
+                Destroy(gameObject);
+            }
         }
+        
     }
 
    

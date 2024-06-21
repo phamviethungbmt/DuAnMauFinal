@@ -22,6 +22,9 @@ public class crabMovement : MonoBehaviour
     private Vector2 posCrabTarget;
     private Transform limitCanSee;
     private bool crabSawYou;
+
+    public int scrabdamage =1;
+
     [SerializeField] private GameObject ExplosionWhenCrabIsDefeated;
     private void Start()
     {
@@ -105,6 +108,11 @@ public class crabMovement : MonoBehaviour
         // Nếu nó va chạm với Player thì sẽ tự động phát nổ
         if (collision.gameObject.tag == "Player")
         {
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(scrabdamage);
+            }
             StartCoroutine(Explosion());
             //Thêm lực đẩy cho viên đạn để khiến Player bị nhảy lên một đoạn
             Rigidbody2D rbBullet = playerMain.GetComponent<Rigidbody2D>();
@@ -116,6 +124,8 @@ public class crabMovement : MonoBehaviour
         {
             StartCoroutine(Explosion());
         }
+
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionEffect: {fileID: 8929712974149079728, guid: bda27b6f3a17adf4d9a1f035b5af81c9, type: 3}
-  bulletDamage: 1
+  bulletDamage: 0
 --- !u!70 &1016184369390670937
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 3.7304604e-10, y: 0.0031293374}
@@ -176,5 +176,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd5ea526fbacb534b9a94ae614657ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionBullet: {fileID: 8929712974149079728, guid: bda27b6f3a17adf4d9a1f035b5af81c9, type: 3}
-  damageEnemy: 1
+  explosionBullet: {fileID: 1650114172490580887, guid: f63c1d95dabd1984493f5ddcf1ecde56, type: 3}
+  damageEnemy: 9

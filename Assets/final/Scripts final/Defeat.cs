@@ -11,6 +11,7 @@ public class Defeat : MonoBehaviour
 
     private void Start()
     {
+        playerDeath = false;
         panelDefeat.SetActive(false);
     }
     private void Update()

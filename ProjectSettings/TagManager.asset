@@ -12,6 +12,9 @@ TagManager:
   - DeathZone
   - Head
   - Body
+  - Coin
+  - Trap
+  - Key
   layers:
   - Default
   - TransparentFX
