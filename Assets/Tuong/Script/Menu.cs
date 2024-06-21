@@ -10,8 +10,10 @@ public class Menu : MonoBehaviour
     public GameObject panel;
     public Slider volumeSilder;
     private bool isPause = false;
+    public GameObject MenuPanel;
     void Start()
     {
+        MenuPanel.SetActive(false);
         panel.SetActive(false);
         if (volumeSilder != null)
         {
@@ -26,7 +28,9 @@ public class Menu : MonoBehaviour
         {
             if (!panel.activeSelf)
             {
+                Time.timeScale = 0f;
                 panel.SetActive(true);
+                
             }
             else
             {
@@ -35,17 +39,17 @@ public class Menu : MonoBehaviour
         }
 
 
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            if (!panel.activeSelf)
-            {
-                Pause();
-            }
-            else
-            {
-                ResumeGame();
-            }
-        }
+        //if (Input.GetKeyUp(KeyCode.Q))
+        //{
+        //    if (!panel.activeSelf)
+        //    {
+        //        Pause();
+        //    }
+        //    else
+        //    {
+        //        ResumeGame();
+        //    }
+        //}
     }
     public void Game()
     {
@@ -54,6 +58,7 @@ public class Menu : MonoBehaviour
 
     public void Replay()
     {
+        Time.timeScale = 1f;
         Scene currenScence = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currenScence.name);
     }
@@ -71,7 +76,7 @@ public class Menu : MonoBehaviour
 
     public void Menu2()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene(0);
     }
 
     public void ChangeVolume(float volume)
@@ -95,11 +100,13 @@ public class Menu : MonoBehaviour
     }
     public void Exit()
     {
-
         UnityEditor.EditorApplication.isPlaying = false;
-
         //Application.Quit(); khi build game
+    }
 
+    public void ClickToPlay()
+    {
+        MenuPanel.gameObject.SetActive(true);
     }
 
 }

@@ -19,6 +19,8 @@ public class PartOfBoss : MonoBehaviour
 
     public GameObject explosionEffect;
     public GameObject explosionBullet;
+
+    public int scoreAdd = 10;
     
 
     private void Start()
@@ -29,6 +31,10 @@ public class PartOfBoss : MonoBehaviour
 
         StartCoroutine(BurstFireRoutine());
         StartCoroutine(SpreadFireRoutine());
+    }
+    private void Update()
+    {
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -52,6 +58,12 @@ public class PartOfBoss : MonoBehaviour
             //Xóa vụ nổ
             Destroy(a, 0.9f);
             Destroy(heathPartSilder.gameObject);
+
+            PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeScore(scoreAdd);
+            }
         }
         
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class BodyBoss : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class BodyBoss : MonoBehaviour
     public GameObject part2;
     public GameObject part3;
     public GameObject part4;
+    public GameObject bossBody;
     bool BodyImmu = true;
 
     public int heathPart = 10;
@@ -17,18 +19,27 @@ public class BodyBoss : MonoBehaviour
 
     public GameObject explosionEffect;
     public GameObject explosionBullet;
+
+    public int scoreAdd = 10;
+
     private void Start()
     {
+       
+
         heathPartCurrent = heathPart;
         heathPartSilder.maxValue = heathPart;
         heathPartSilder.value = heathPartCurrent;
     }
 
-    //private void Update()
-    //{
-    //    checkDestroy();
+    private void Update()
+    {
+        //if (bossBody == null)
+        //{
+        //    Debug.Log("boss chet");
+        //    StartCoroutine(Victory());
+        //}    
 
-    //}
+    }
     public void checkDestroy()
     {
         if (part1 == null && part2 == null && part3 == null && part4 == null)
@@ -62,7 +73,11 @@ public class BodyBoss : MonoBehaviour
                 {
                     Destroy(gameObject); // Tiêu diệt BodyBoss khi hết máu
                     Instantiate(explosionEffect, transform.position, Quaternion.identity);
-                    // Các hành động khác khi tiêu diệt BodyBoss
+                    PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
+                    if (playerHealth != null)
+                    {
+                        playerHealth.TakeScore(scoreAdd);
+                    }
                 }
             }
         }
@@ -71,4 +86,18 @@ public class BodyBoss : MonoBehaviour
     {
         heathPartSilder.value = heathPartCurrent;
     }
+
+    //IEnumerator  Victory()
+    //{
+    //    yield return new WaitForSeconds(3);
+
+    //    panelVictory.SetActive(true);
+    //    PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
+    //    if (playerHealth != null )
+    //    {
+    //        scoreVictory = playerHealth.score;
+    //    }
+
+    //    scoreVictoryText.text = "YOUR SCORE    " + scoreVictory;
+    //}
 }

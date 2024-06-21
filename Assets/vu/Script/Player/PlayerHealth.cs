@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour,TakeDamage
 {
     [SerializeField] private int maxHealth;
 
-    private int currentHealth;
+    public int currentHealth;
     private bool canTakeDamage = true;
     private Slider healthSlider;
     Animator myAnimator;
@@ -48,8 +48,13 @@ public class PlayerHealth : MonoBehaviour,TakeDamage
 
     public void TakeDamage(int damage)
     {
-         currentHealth-=damage;
-         UpdateSliderHealth();
+        if (currentHealth > 0) 
+        {
+            currentHealth -= damage;
+            UpdateSliderHealth();
+        }
+        else currentHealth = 0;
+         
     }    
     private void UpdateSliderHealth()
     {
