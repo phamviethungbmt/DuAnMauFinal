@@ -21,15 +21,21 @@ public class BodyBoss : MonoBehaviour
     public GameObject explosionBullet;
 
     public int scoreAdd = 10;
+    [SerializeField] private GameObject lazer;
+    [SerializeField] private Transform posLazerCenter,posLazerLeft,posLazerRight;
+    float shootSpeed = 1;
+    [SerializeField] private float lazerSpeed;
+    float time;
 
     private void Start()
     {
-       
 
+        time = 0;
         heathPartCurrent = heathPart;
         heathPartSilder.maxValue = heathPart;
         heathPartSilder.value = heathPartCurrent;
     }
+    
 
     private void Update()
     {
@@ -38,7 +44,12 @@ public class BodyBoss : MonoBehaviour
         //    Debug.Log("boss chet");
         //    StartCoroutine(Victory());
         //}    
-
+        if (time >= shootSpeed)
+        {
+            StartCoroutine(ShootLazer());
+            time = 0; // Reset thời gian
+        }
+        time += Time.deltaTime;
     }
     public void checkDestroy()
     {
@@ -51,7 +62,23 @@ public class BodyBoss : MonoBehaviour
             BodyImmu = true; 
         }    
     }
+    IEnumerator ShootLazer()
+    {
+        // Bắn lazer từ ba vị trí
+        GameObject centerLAzer = Instantiate(lazer, posLazerCenter.position, Quaternion.Euler(0,0,-90));
+        Rigidbody2D rb1 = centerLAzer.GetComponent<Rigidbody2D>();
+        rb1.velocity = posLazerCenter.up * -1 *lazerSpeed;
 
+        GameObject leftLAzer = Instantiate(lazer, posLazerLeft.position, Quaternion.Euler(0, 0, -90));
+        Rigidbody2D rb2 = leftLAzer.GetComponent<Rigidbody2D>();
+        rb2.velocity = posLazerLeft.up * -1 * lazerSpeed;
+
+        GameObject rightLAzer = Instantiate(lazer, posLazerRight.position, Quaternion.Euler(0, 0, -90));
+        Rigidbody2D rb3 = rightLAzer.GetComponent<Rigidbody2D>();
+        rb3.velocity = posLazerRight.up * -1 * lazerSpeed;
+
+        yield return null; // Trả về ngay lập tức
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Bullet"))

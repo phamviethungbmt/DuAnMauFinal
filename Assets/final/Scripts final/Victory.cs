@@ -51,7 +51,7 @@ public class Victory : MonoBehaviour
         PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
         if (playerHealth != null)
         {
-            scoreVictory = playerHealth.score;
+            scoreVictory = PlayerHealth.score;
         }
 
         scoreVictoryText.text = "YOUR SCORE    " + scoreVictory;

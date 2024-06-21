@@ -10,6 +10,7 @@ public class loadScen : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            PlayerHealth.scoreTemp = PlayerHealth.score;
         }
     }
 }

@@ -15,13 +15,15 @@ public class PlayerHealth : MonoBehaviour,TakeDamage
     Animator myAnimator;
     const string HEALTH_SLIDER_TEXT = ("Health Slider");
 
-    public int score;
+    public static int score;
+    public static int scoreTemp = 0;
     public TextMeshProUGUI scoreText;
 
 
 
     void Start()
     {
+        scoreText.text = score.ToString();
         currentHealth = maxHealth;
       myAnimator=GetComponent<Animator>();  
     }

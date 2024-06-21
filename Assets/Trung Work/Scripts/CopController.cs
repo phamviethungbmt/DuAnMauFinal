@@ -25,6 +25,9 @@ public class CopController : MonoBehaviour
     [SerializeField] private Transform limitPointEnemySeeLeft,limitPointEnemySeeRight;
     private Transform limitPointEnemySee=null;
     GameObject t, t1, t2;
+
+    bool destroyenemy = false;
+    public int takeScore = 10;
     void Start()
     {
         time = 1;
@@ -134,7 +137,22 @@ public class CopController : MonoBehaviour
             Destroy(t1);
             Destroy(t2);
             Destroy(collision.gameObject);
+            destroyenemy = true;
             Destroy(enemyExplosion, 0.65f);
+        }
+
+        if (playerPos != null)
+        {
+            PlayerHealth playerHealth = playerPos.GetComponent<PlayerHealth>();
+            if (destroyenemy)
+            {
+                Debug.Log("quái bị tiêu diệt");
+
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeScore(takeScore);
+                }
+            }
         }
     }
     void StartShoot()
@@ -160,4 +178,7 @@ public class CopController : MonoBehaviour
         }
         time += Time.deltaTime;
     }
+
+    
+
 }

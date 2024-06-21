@@ -10,10 +10,10 @@ public class Menu : MonoBehaviour
     public GameObject panel;
     public Slider volumeSilder;
     private bool isPause = false;
-    public GameObject MenuPanel;
+    //public GameObject MenuPanel;
     void Start()
     {
-        MenuPanel.SetActive(false);
+        //MenuPanel.SetActive(false);
         panel.SetActive(false);
         if (volumeSilder != null)
         {
@@ -34,6 +34,7 @@ public class Menu : MonoBehaviour
             }
             else
             {
+                Time.timeScale = 1f;
                 panel.SetActive(false);
             }
         }
@@ -53,11 +54,14 @@ public class Menu : MonoBehaviour
     }
     public void Game()
     {
+        PlayerHealth.score = 0;
+        PlayerHealth.scoreTemp = 0;
         SceneManager.LoadScene(1);
     }
 
     public void Replay()
     {
+        PlayerHealth.score = PlayerHealth.scoreTemp;
         Time.timeScale = 1f;
         Scene currenScence = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currenScence.name);
@@ -106,7 +110,7 @@ public class Menu : MonoBehaviour
 
     public void ClickToPlay()
     {
-        MenuPanel.gameObject.SetActive(true);
+        //MenuPanel.gameObject.SetActive(true);
     }
 
 }

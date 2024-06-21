@@ -23,26 +23,21 @@ public class Defeat : MonoBehaviour
     }
     public void CheckPlayerDeath()
     {
-        if (player == null)
-        {
-            playerDeath = true;
-        }
-
         PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
         if (playerHealth != null )
         {
-            if(playerHealth.currentHealth == 0 )
+            if(playerHealth.currentHealth <=0 || !player)
             {
+                
                 playerDeath = true;
             }
+            
         }
-
-        
     }
 
     public void ShowDefeat()
     {
-        Time.timeScale = 0f;
+        Time.timeScale = 0;
         panelDefeat.SetActive (true);
 
     }
