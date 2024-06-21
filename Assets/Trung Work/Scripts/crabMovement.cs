@@ -7,16 +7,14 @@ public class crabMovement : MonoBehaviour
 {
     private  Transform player;
     [SerializeField] private float speed;
-    private float jump;
     private SpriteRenderer crabSprite;
     Animator animCrab;
     public GameObject explosionEffect;
     private Rigidbody2D rb;
-    private float direction;
     private float healthCrab = 4;
     //Khai báo Camera
-    private Renderer renderer;
-    private bool isVisible;
+    //private Renderer renderer;
+    //private bool isVisible;
     GameObject playerMain; //Tham chiếu đến đối tượng Player
     [SerializeField] private Transform posLeft,posRight,limitCanSeeLeft,limitCanSeeRight;
     private Vector2 posCrabTarget;
@@ -33,8 +31,7 @@ public class crabMovement : MonoBehaviour
         crabSprite = GetComponent<SpriteRenderer>();
         animCrab = GetComponent<Animator>();
         rb= GetComponent<Rigidbody2D>();
-        renderer = GetComponent<Renderer>();
-        direction = 0;
+        //renderer = GetComponent<Renderer>();
         playerMain = GameObject.FindGameObjectWithTag("Player");
         player = GameObject.FindGameObjectWithTag("Player").transform;
         posCrabTarget=posLeft.position;
@@ -61,14 +58,10 @@ public class crabMovement : MonoBehaviour
             if (transform.position.x < player.position.x)
             {
                 crabSprite.flipX = true;
-                direction = 1;
-                jump = 0;
             }
             if (transform.position.x > player.position.x)
             {
                 crabSprite.flipX = false;
-                direction = -1;
-                jump = 0;
             }
             transform.position=Vector2.MoveTowards(transform.position,new Vector2(player.position.x,0), speed * Time.deltaTime);
         }

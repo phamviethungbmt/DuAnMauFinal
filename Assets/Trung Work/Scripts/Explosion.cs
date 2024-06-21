@@ -8,7 +8,7 @@ public class Explosion : MonoBehaviour
     GameObject playerMain;
     void Start()
     {
-         playerMain= GameObject.FindGameObjectWithTag("Player");
+        playerMain= GameObject.FindGameObjectWithTag("Player");
         audioExplosion.Play();
     }
     private void OnCollisionEnter2D(Collision2D collision)

@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour,TakeDamage
     [SerializeField] private int maxHealth;
 
     public int currentHealth;
-    private bool canTakeDamage = true;
+    //private bool canTakeDamage = true;
     private Slider healthSlider;
     Animator myAnimator;
     const string HEALTH_SLIDER_TEXT = ("Health Slider");
@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour,TakeDamage
         else hadKey = false;
         
         Time.timeScale = 1f;
-        scoreText.text = "SCORE" + score.ToString();
+        scoreText.text = "SCORE " + score.ToString();
         currentHealth = maxHealth;
         myAnimator=GetComponent<Animator>();  
     }

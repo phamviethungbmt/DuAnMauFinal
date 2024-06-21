@@ -7,14 +7,14 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    public GameObject panel;
+    public GameObject MenuPanel;
     public Slider volumeSilder;
     private bool isPause = false;
-    //public GameObject MenuPanel;
+    public GameObject PanelSetting;
     void Start()
     {
-        //MenuPanel.SetActive(false);
-        panel.SetActive(false);
+        MenuPanel.SetActive(false);
+        PanelSetting.SetActive(false);
         if (volumeSilder != null)
         {
             volumeSilder.value = AudioListener.volume;
@@ -24,21 +24,7 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            if (!panel.activeSelf)
-            {
-                Time.timeScale = 0f;
-                panel.SetActive(true);
-                
-            }
-            else
-            {
-                Time.timeScale = 1f;
-                panel.SetActive(false);
-            }
-        }
-
+        
 
         //if (Input.GetKeyUp(KeyCode.Q))
         //{
@@ -59,24 +45,16 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void Replay()
-    {
-        
-        PlayerHealth.score = PlayerHealth.scoreTemp;
-        Time.timeScale = 1f;
-        Scene currenScence = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currenScence.name);
-    }
+ 
 
     public void Setting()
     {
-        panel.SetActive(true);
+        PanelSetting.SetActive(true);
     }
 
     public void OutSetting()
     {
-
-        panel.SetActive(false);
+        PanelSetting.SetActive(false);
     }
 
     public void Menu2()
@@ -111,7 +89,6 @@ public class Menu : MonoBehaviour
 
     public void ClickToPlay()
     {
-        //MenuPanel.gameObject.SetActive(true);
+        MenuPanel.gameObject.SetActive(true);
     }
-
 }

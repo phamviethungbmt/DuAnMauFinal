@@ -27,9 +27,10 @@ public class EnemyDamage : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("vacham voi player");
+        
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("vacham voi player");
             PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {

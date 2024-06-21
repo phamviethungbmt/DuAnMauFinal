@@ -19,7 +19,6 @@ public class CopController : MonoBehaviour
     public float speedBulletAngle;
     float time;
     public AudioSource audioShootCop;
-    float shootRate=5f;
     [SerializeField] private bool foundPlayer = false;
     [SerializeField] private GameObject EnemyIsDestroyedExplosion;
     [SerializeField] private Transform limitPointEnemySeeLeft,limitPointEnemySeeRight;
