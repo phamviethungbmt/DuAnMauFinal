@@ -39,7 +39,10 @@ public class PlayerHealth : MonoBehaviour,TakeDamage
     // Update is called once per frame
     void Update()
     {
-        
+        if (currentHealth <=0)
+        {
+            Destroy(gameObject,3f);
+        }
     }
     public void GetHeal(int addheal)
     {

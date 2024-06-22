@@ -5,7 +5,7 @@ using UnityEngine;
 public class Defeat : MonoBehaviour
 {
     public GameObject player;
-    private bool playerDeath = false;
+    public bool playerDeath = false;
 
     public GameObject panelDefeat;
 
@@ -27,9 +27,8 @@ public class Defeat : MonoBehaviour
         PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
         if (playerHealth != null )
         {
-            if(playerHealth.currentHealth <=0 || !player)
+            if(playerHealth.currentHealth <= 0 || player == null)
             {
-                
                 playerDeath = true;
             }
             
